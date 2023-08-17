@@ -13,6 +13,7 @@
 
             let divisor = findDivisor(number); // 約数を求める
             let sumDivisor = divisor.reduce((sum, current) => sum + current, 0); // 約数の合計を求める
+            sumDivisor -= number;
 
             if (number == sumDivisor) {
                 let result = window.confirm(number + "は完全数です。約数も表示しますか？");

@@ -3,9 +3,10 @@ function main() {
 
     findDivisor(number);
     let sumDivisor = 0; //合計を格納する変数
-    for (let i = 0; i < number.length; i++) {
-        sumDivisor += number[i]; // 配列の各要素を足し合わせる
+    for (let i = 0; i < divisor.length; i++) {
+        sumDivisor += divisor[i]; // 配列の各要素を足し合わせる
     }
+    sumDivisor -= number;  
 
     if (number == sumDivisor) {
         let result = window.confirm(number + "は完全数です。約数も表示しますか？");
