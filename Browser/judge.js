@@ -6,18 +6,13 @@ function main() {
     for (let i = 0; i < divisor.length; i++) {
         sumDivisor += divisor[i]; // 配列の各要素を足し合わせる
     }
-    sumDivisor -= number;  
+    sumDivisor -= number;
 
     if (number == sumDivisor) {
-        let result = window.confirm(number + "は完全数です。約数も表示しますか？");
-        if (result == true) {
-            window.alert(number + "は完全数です。約数は" + divisor + "です。");
-        }
+        window.alert(number + "は完全数です。約数は" + divisor + "です。");
+
     } else if (number = !sumDivisor) {
-        let result = window.confirm(number + "は完全数ではありません。約数も表示しますか？");
-        if (result == true) {
-            window.alert(number + "は完全数ではありません。約数は" + divisor + "です。");
-        }
+        window.alert(number + "は完全数ではありません。約数は" + divisor + "です。");
     }
 }
 
