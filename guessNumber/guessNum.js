@@ -23,6 +23,9 @@ function main() { //ゲーム本体を動かす関数
     // 変数playerDivisorの内、変数numberDivisorに含まれない数を代入する配列
     let falsePlayerDivisor = [];
 
+    // 開始時刻を記録
+    const startTime = performance.now();
+
     //数字を予想する動作の繰り返し
     while (number != playerNumber) {
         playerDivisor = window.prompt("0~99で約数の予想を入力してください。");
@@ -30,9 +33,14 @@ function main() { //ゲーム本体を動かす関数
         if (numberDivisor.includes(playerDivisor) == true) {
             truePlayerDivisor.push(playerDivisor);
             truePlayerDivisor = ascendingOrder(truePlayerDivisor);
+
+            window.alert(playerDivisor + "は約数です。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
+
         } else if (numberDivisor.includes(playerDivisor) == false) {
             falsePlayerDivisor.push(playerDivisor);
             falsePlayerDivisor = ascendingOrder(falsePlayerDivisor);
+
+            window.alert(playerDivisor + "は約数ではないです。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
         }
 
         playerNumber = window.prompt("00~99で数字の予想を入力してください。");
@@ -40,7 +48,13 @@ function main() { //ゲーム本体を動かす関数
         historyPlayerNumber = ascendingOrder(historyPlayerNumber);
     }
 
-    window.alert("おめでとうございます！正解は" + number + "です。\n約数は" + numberDivisor + "です。\nクリア時間は");
+    // 終了時刻を記録
+    const endTime = performance.now();
+
+    let time = endTime - startTime;
+    time = convertMillisecondsToTime(time);
+
+    window.alert("おめでとうございます！正解は" + number + "です。\n約数は" + numberDivisor + "です。\nクリア時間は" + time + "です。");
 }
 
 function reload() { //ページをリロードする関数
@@ -64,13 +78,26 @@ function findDivisor(number) { // 約数を求める関数
 }
 
 function ascendingOrder(arr) {
-    arr.sort(function(first, second){
-        if (first > second){
-          return 1;
-        }else if (first < second){
-          return -1;
-        }else{
-          return 0;
+    arr.sort(function (first, second) {
+        if (first > second) {
+            return 1;
+        } else if (first < second) {
+            return -1;
+        } else {
+            return 0;
         }
-      });
+    });
+}
+
+function convertMillisecondsToTime(milliseconds) {
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    const formattedHours = String(hours).padStart(2, '0');
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(seconds).padStart(2, '0');
+
+    return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 }
