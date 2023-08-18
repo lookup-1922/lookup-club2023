@@ -25,24 +25,28 @@ function main() { //ゲーム本体を動かす関数
 
     //数字を予想する動作の繰り返し
     while (number != playerNumber) {
-        playerDivisor = parseInt(window.prompt("0~99で約数の予想を入力してください."), 10); // 数値に変換
+        playerDivisor = parseInt(window.prompt("①0~99で約数の予想を入力してください."), 10); // 数値に変換
 
         if (numberDivisor.includes(playerDivisor) == true) {
             truePlayerDivisor.push(playerDivisor);
             truePlayerDivisor = ascendingOrder(truePlayerDivisor);
 
-            window.alert(playerDivisor + "は約数です。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
+            window.alert("②" + playerDivisor + "は約数です。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
 
         } else if (numberDivisor.includes(playerDivisor) == false) {
             falsePlayerDivisor.push(playerDivisor);
             falsePlayerDivisor = ascendingOrder(falsePlayerDivisor);
 
-            window.alert(playerDivisor + "は約数ではないです。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
+            window.alert("②" + playerDivisor + "は約数ではないです。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
         }
 
-        playerNumber = parseInt(window.prompt("0~99で数字の予想を入力してください."), 10); // 数値に変換
+        playerNumber = parseInt(window.prompt("③0~99で数字の予想を入力してください."), 10); // 数値に変換
         historyPlayerNumber.push(playerNumber);
         historyPlayerNumber = ascendingOrder(historyPlayerNumber);
+
+        if (number != playerNumber) {
+            window.alert("④" + playerDivisor + "は約数ではないです。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
+        }
     }
 
     // 終了時刻を記録
