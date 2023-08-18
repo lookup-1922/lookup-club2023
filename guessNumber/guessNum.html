@@ -5,19 +5,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>guess Number</title>
+    <title>Guess the Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        p {
+            color: #777;
+            line-height: 1.5;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 
 <body>
+    <div id="container">
+        <h1>Guess the Number</h1>
+        <h2>概要</h2>
+        <p>Guess the Numberは、正の約数の情報を元に00~99までのランダムな数字を当てるゲームです。少ない時間で正解することが目標です。</p>
+        <h2>使い方</h2>
+        <p>スタートするには「ゲームスタート」ボタンを押してください。</p>
+        <h2>ゲームの流れ</h2>
+        <p>①約数を予想する</p>
+        <p>②約数の正誤と今までの約数と回答の情報が表示される</p>
+        <p>③正解を予想する。</p>
+        <p>①に戻る</p>
+        <button onclick="main()">ゲームスタート</button> <!--関数mainを実行する-->
+    </div>
     <script src="guessNum.js"></script>
-    <h1>guess Number</h1>
-    <h2>概要</h2>
-    <p>guess Numberとは正の約数の情報を元に00~99までのランダムな数字を当てるゲームです。少ない時間で正解することが目標です。</p>
-    <h2>使い方</h2>
-    <p>スタートするには「ゲームスタート」ボタンを押す。</p>
-    <h2>ゲームの流れ</h2>
-    <p>①約数を予想する→②約数の正誤と今までの約数と回答の情報が表示される→③正解を予想する。→①にもどる</p>
-    <button onclick="main()">ゲームスタート</button> <!--関数mainを実行する-->
 </body>
 
 </html>
