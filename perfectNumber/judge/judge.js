@@ -1,20 +1,18 @@
 function main() {
     let number = window.prompt("完全数か調べる数字を入力してください。"); //入力ダイアログを表示
 
-    findDivisor(number);
+    let divisor = findDivisor(number); // 約数を求める
     let sumDivisor = divisor.reduce((sum, current) => sum + current, 0); // 約数の合計を求める
     sumDivisor -= number;
 
     if (number == sumDivisor) {
-        window.alert(number + "は完全数です。約数は" + divisor + "です。");
-
-    } else if (number = !sumDivisor) {
-        window.alert(number + "は完全数ではありません。約数は" + divisor + "です。");
+        window.alert(number + "は完全数です。約数は" + divisor.join(", ") + "です。");
+    } else {
+        window.alert(number + "は完全数ではありません。約数は" + divisor.join(", ") + "です。");
     }
 }
 
 function findDivisor(number) { //約数を求める関数
-
     let divisor = [];
 
     if (number <= 0) {
