@@ -2,10 +2,7 @@ function main() {
     let number = window.prompt("完全数か調べる数字を入力してください。"); //入力ダイアログを表示
 
     findDivisor(number);
-    let sumDivisor = 0; //合計を格納する変数
-    for (let i = 0; i < divisor.length; i++) {
-        sumDivisor += divisor[i]; // 配列の各要素を足し合わせる
-    }
+    let sumDivisor = divisor.reduce((sum, current) => sum + current, 0); // 約数の合計を求める
     sumDivisor -= number;
 
     if (number == sumDivisor) {
