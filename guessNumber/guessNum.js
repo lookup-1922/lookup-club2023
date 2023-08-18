@@ -45,7 +45,7 @@ function main() { //ゲーム本体を動かす関数
         historyPlayerNumber = ascendingOrder(historyPlayerNumber);
 
         if (number != playerNumber) {
-            window.alert("④約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
+            window.alert("④" + playerNumber + "ではないです。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
         }
     }
 
