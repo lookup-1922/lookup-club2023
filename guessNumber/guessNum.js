@@ -1,9 +1,6 @@
 function main() { //ゲーム本体を動かす関数
     // 0から99までのランダムな整数を生成
-    let randomNumber = Math.floor(Math.random() * 100);
-
-    // randomNumberが1桁の場合、前に0を追加して2桁にして変数numberに代入する
-    let number = randomNumber.toString().padStart(2, '0');
+    let number = Math.floor(Math.random() * 100);
 
     // 変数numberの約数を変数numberDivisorに代入する
     let numberDivisor = findDivisor(number);
@@ -43,7 +40,7 @@ function main() { //ゲーム本体を動かす関数
             window.alert(playerDivisor + "は約数ではないです。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
         }
 
-        playerNumber = parseInt(window.prompt("00~99で数字の予想を入力してください."), 10); // 数値に変換
+        playerNumber = parseInt(window.prompt("0~99で数字の予想を入力してください."), 10); // 数値に変換
         historyPlayerNumber.push(playerNumber);
         historyPlayerNumber = ascendingOrder(historyPlayerNumber);
     }
@@ -55,10 +52,6 @@ function main() { //ゲーム本体を動かす関数
     time = convertMillisecondsToTime(time);
 
     window.alert("おめでとうございます！正解は" + number + "です。\n約数は" + numberDivisor + "です。\nクリア時間は" + time + "です。");
-}
-
-function reload() { //ページをリロードする関数
-    location.reload();
 }
 
 function findDivisor(number) { // 約数を求める関数
