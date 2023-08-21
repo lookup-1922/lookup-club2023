@@ -6,9 +6,9 @@ function main() {
     sumDivisor -= number;
 
     if (number == sumDivisor) {
-        window.alert(number + "は完全数です。約数は" + divisor.join(", ") + "です。");
+        window.alert(number + "は完全数です。\n約数は" + divisor.join(", ") + "です。");
     } else {
-        window.alert(number + "は完全数ではありません。約数は" + divisor.join(", ") + "です。");
+        window.alert(number + "は完全数ではありません。\n約数は" + divisor.join(", ") + "です。");
     }
 }
 
