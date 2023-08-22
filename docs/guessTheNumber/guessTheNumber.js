@@ -1,6 +1,8 @@
 function main() { //ゲーム本体を動かす関数
     // 0から99までのランダムな整数を生成
     let number = Math.floor(Math.random() * 100);
+    
+    console.log(number);
 
     // 変数numberの約数を変数numberDivisorに代入する
     let numberDivisor = findDivisor(number);
