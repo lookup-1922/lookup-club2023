@@ -31,6 +31,7 @@ function main() { //ゲーム本体を動かす関数
             playerDivisor = parseInt(window.prompt("①0~99で約数の予想を入力してください."), 10); // 数値に変換
 
             if (playerDivisor == NaN) {
+                console.log("キャンセルが選択されました。");
                 throw "強制終了します。";
             }
 
@@ -52,6 +53,7 @@ function main() { //ゲーム本体を動かす関数
             historyPlayerNumber = ascendingOrder(historyPlayerNumber);
 
             if (playerNumber == NaN) {
+                console.log("キャンセルが選択されました。");
                 throw "強制終了します。";
             }
 
