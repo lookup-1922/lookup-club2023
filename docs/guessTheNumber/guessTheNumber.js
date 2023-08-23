@@ -25,58 +25,39 @@ function main() { //ゲーム本体を動かす関数
     // 開始時刻を記録
     const startTime = performance.now();
 
-    try {
-        //数字を予想する動作の繰り返し
-        while (number != playerNumber) {
-            playerDivisor = parseInt(window.prompt("①0~99で約数の予想を入力してください."), 10); // 数値に変換
+    //数字を予想する動作の繰り返し
+    while (number != playerNumber) {
+        playerDivisor = parseInt(window.prompt("①0~99で約数の予想を入力してください."), 10); // 数値に変換
 
-            if (playerDivisor == NaN) {
-                console.log("キャンセルが選択されました。");
-                throw "強制終了します。";
-            }
+        if (numberDivisor.includes(playerDivisor) == true) {
+            truePlayerDivisor.push(playerDivisor);
+            truePlayerDivisor = ascendingOrder(truePlayerDivisor);
 
-            if (playerDivisor == "NaN") {
-                console.log("キャンセルが選択されました。");
-                throw "強制終了します。";
-            }
+            window.alert("②" + playerDivisor + "は約数です。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
 
-            if (numberDivisor.includes(playerDivisor) == true) {
-                truePlayerDivisor.push(playerDivisor);
-                truePlayerDivisor = ascendingOrder(truePlayerDivisor);
+        } else if (numberDivisor.includes(playerDivisor) == false) {
+            falsePlayerDivisor.push(playerDivisor);
+            falsePlayerDivisor = ascendingOrder(falsePlayerDivisor);
 
-                window.alert("②" + playerDivisor + "は約数です。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
-
-            } else if (numberDivisor.includes(playerDivisor) == false) {
-                falsePlayerDivisor.push(playerDivisor);
-                falsePlayerDivisor = ascendingOrder(falsePlayerDivisor);
-
-                window.alert("②" + playerDivisor + "は約数ではないです。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
-            }
-
-            playerNumber = parseInt(window.prompt("③0~99で数字の予想を入力してください."), 10); // 数値に変換
-            historyPlayerNumber.push(playerNumber);
-            historyPlayerNumber = ascendingOrder(historyPlayerNumber);
-
-            if (playerNumber == NaN) {
-                console.log("キャンセルが選択されました。");
-                throw "強制終了します。";
-            }
-
-            if (number != playerNumber) {
-                window.alert("④" + playerNumber + "ではないです。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
-            }
+            window.alert("②" + playerDivisor + "は約数ではないです。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
         }
 
-        // 終了時刻を記録
-        const endTime = performance.now();
+        playerNumber = parseInt(window.prompt("③0~99で数字の予想を入力してください."), 10); // 数値に変換
+        historyPlayerNumber.push(playerNumber);
+        historyPlayerNumber = ascendingOrder(historyPlayerNumber);
 
-        let time = endTime - startTime;
-        time = convertMillisecondsToTime(time);
-
-        window.alert("おめでとうございます！正解は" + number + "です。\n約数は" + numberDivisor + "です。\nクリア時間は" + time + "です。");
-    } catch (error) {
-        window.alert(error.message);
+        if (number != playerNumber) {
+            window.alert("④" + playerNumber + "ではないです。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
+        }
     }
+
+    // 終了時刻を記録
+    const endTime = performance.now();
+
+    let time = endTime - startTime;
+    time = convertMillisecondsToTime(time);
+
+    window.alert("おめでとうございます！正解は" + number + "です。\n約数は" + numberDivisor + "です。\nクリア時間は" + time + "です。");
 }
 
 function findDivisor(number) { // 約数を求める関数
