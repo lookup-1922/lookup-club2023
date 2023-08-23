@@ -35,6 +35,11 @@ function main() { //ゲーム本体を動かす関数
                 throw "強制終了します。";
             }
 
+            if (playerDivisor == "NaN") {
+                console.log("キャンセルが選択されました。");
+                throw "強制終了します。";
+            }
+
             if (numberDivisor.includes(playerDivisor) == true) {
                 truePlayerDivisor.push(playerDivisor);
                 truePlayerDivisor = ascendingOrder(truePlayerDivisor);
