@@ -31,7 +31,7 @@ function main() { //ゲーム本体を動かす関数
             playerDivisor = parseInt(window.prompt("①0~99で約数の予想を入力してください."), 10); // 数値に変換
 
             if (playerDivisor == NaN) {
-                throw new error("強制終了します。");
+                throw "強制終了します。";
             }
 
             if (numberDivisor.includes(playerDivisor) == true) {
@@ -52,7 +52,7 @@ function main() { //ゲーム本体を動かす関数
             historyPlayerNumber = ascendingOrder(historyPlayerNumber);
 
             if (playerNumber == NaN) {
-                throw new error("強制終了します。");
+                throw "強制終了します。";
             }
 
             if (number != playerNumber) {
@@ -70,8 +70,6 @@ function main() { //ゲーム本体を動かす関数
     } catch (error) {
         window.alert(error.message);
     }
-
-
 }
 
 function findDivisor(number) { // 約数を求める関数
