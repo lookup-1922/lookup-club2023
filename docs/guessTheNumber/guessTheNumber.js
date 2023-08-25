@@ -2,6 +2,13 @@ function main() { //ゲーム本体を動かす関数
     // 0から99までのランダムな整数を生成
     let number = Math.floor(Math.random() * 100);
 
+    // 20以上の素数
+    let primeNumber = [23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+
+    if (primeNumber.includes(number) == true){
+        number = Math.floor(Math.random() * 100);
+    }
+
     console.log(number);
 
     // 変数numberの約数を変数numberDivisorに代入する
