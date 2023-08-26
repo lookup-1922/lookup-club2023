@@ -11,10 +11,10 @@ function main() {
         divisorElement.innerHTML = `約数: ${divisor.join(', ')}`;
         // メルセンヌ素数の結果を表示
         const mersennePrimesElement = document.getElementById("mersennePrimes");
-        divisorElement.innerHTML = `メルセンヌ素数: ${mersennePrimes}`;
+        mersennePrimesElement.innerHTML = `メルセンヌ素数: ${mersennePrimes}`;
         // 完全数の結果を表示
         const perfectNumberElement = document.getElementById("perfectNumber");
-        perfectNumberElement.innerHTML = `約数: ${perfectNumber}`;
+        perfectNumberElement.innerHTML = `完全数: ${perfectNumber}`;
     } else {
         alert("有効な数字を入力してください。");
     }
@@ -53,8 +53,8 @@ function perfectNumberChcker(number, divisor) { //完全数かを判定する関
     let sumDivisors = divisor.reduce((sum, current) => sum + current, 0); // 約数の合計を求める
 
     if (number * 2 === sumDivisors) {
-        return "yes";
+        return true;
     } else {
-        return "no";
+        return false;
     }
 }
