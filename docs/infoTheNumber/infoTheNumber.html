@@ -9,8 +9,17 @@
 </head>
 
 <body>
-    <script src="perfectNumberChecker.js"></script>
-    <button onclick="main()">完全数について調べる</button>
+    <div id="container">
+        <label for="number">数字を入力：</label>
+        <input type="number" id="number">
+        <button onclick="main()">調べる</button>
+
+        <div id="divisor"></div>
+        <div id="mersennePrimes"></div>
+        <div id="perfectNumber"></div>
+
+        <script src="numberChecker.js"></script>
+    </div>
 </body>
 
 </html>
