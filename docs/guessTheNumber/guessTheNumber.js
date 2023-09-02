@@ -39,10 +39,10 @@ function gameSunset() {
     time = convertMillisecondsToTime(time);
 
     document.getElementById("information").innerHTML = "<p>おめでとうございます！正解は" + number + "です。</p><p>約数は" + numberDivisor + "です。<p>クリア時間は" + time + "です。</p>";
-    document.getElementById("truePlayerNumber").innerHTML = "";
-    document.getElementById("falsePlayerNumber").innerHTML = "";
-    document.getElementById("historyPlayerNumber").innerHTML = "";
-    document.getElementById("cheatTool").innerHTML = "";
+    document.getElementById("truePlayerNumber").innerHTML = "約数である:";
+    document.getElementById("falsePlayerNumber").innerHTML = "約数ではない:";
+    document.getElementById("historyPlayerNumber").innerHTML = "これまでの回答:";
+    document.getElementById("cheatTool").innerHTML = "ヒント：";
 
     playerNumber = null;
     historyPlayerNumber = [];
@@ -69,7 +69,7 @@ function sendNumber() {
 
             falsePlayerDivisor.push(playerDivisor);
             falsePlayerDivisor = ascendingOrder(falsePlayerDivisor);
-            document.getElementById("falsePlayerDivisor").innerHTML = `約数ではない: ${divisor.join(', ')}`;
+            document.getElementById("falsePlayerDivisor").innerHTML = `約数ではない: ${falsePlayerDivisor.join(', ')}`;
         }
 
         currentRequest = "number";
