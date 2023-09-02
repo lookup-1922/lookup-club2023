@@ -52,7 +52,7 @@ function gameSunset() {
 }
 
 function sendNumber() {
-    const inputNumber = parseInt(document.getElementById("inputNumber").value);
+    let inputNumber = parseInt(document.getElementById("inputNumber").value);
 
     if (gameStatus === true && !isNaN(inputNumber) && currentRequest === "divisor") {
         playerDivisor = inputNumber;
@@ -62,14 +62,14 @@ function sendNumber() {
 
             truePlayerDivisor.push(playerDivisor);
             truePlayerDivisor = ascendingOrder(truePlayerDivisor);
-            document.getElementById("truePlayerDivisor").innerHTML = truePlayerDivisor;
+            document.getElementById("truePlayerDivisor").innerHTML = `約数である: ${truePlayerDivisor.join(', ')}`;
 
         } else if (numberDivisor.includes(playerDivisor) === false) {
             document.getElementById("information").innerHTML = playerDivisor + "は約数ではありません。";
 
             falsePlayerDivisor.push(playerDivisor);
             falsePlayerDivisor = ascendingOrder(falsePlayerDivisor);
-            document.getElementById("falsePlayerDivisor").innerHTML = falsePlayerDivisor;
+            document.getElementById("falsePlayerDivisor").innerHTML = `約数ではない: ${divisor.join(', ')}`;
         }
 
         currentRequest = "number";
@@ -79,7 +79,7 @@ function sendNumber() {
         playerNumber = inputNumber;
         historyPlayerNumber.push(playerNumber);
         historyPlayerNumber = ascendingOrder(historyPlayerNumber);
-        document.getElementById("historyPlayerNumber").innerHTML = historyPlayerNumber;
+        document.getElementById("historyPlayerNumber").innerHTML = `これまでの回答: ${historyPlayerNumber.join(', ')}`;
 
         if (number === playerNumber) {
             document.getElementById("information").innerHTML = playerNumber + "ではないです。";
@@ -93,7 +93,7 @@ function sendNumber() {
     } else if (gameStatus === false) {
         alert("ゲームが実行されていません。");
 
-    } else if (!isNaN(inputNumber)) {
+    } else if (isNaN(inputNumber)) {
         alert("有効な数字を入力してください。");
 
     }
