@@ -81,9 +81,9 @@ function sendNumber() {
         historyPlayerNumber = ascendingOrder(historyPlayerNumber);
         document.getElementById("historyPlayerNumber").innerHTML = `これまでの回答: ${historyPlayerNumber.join(', ')}`;
 
-        if (number === playerNumber) {
+        if (number !== playerNumber) {
             document.getElementById("information").innerHTML = playerNumber + "ではないです。";
-        } else if (number !== playerNumber) {
+        } else if (number === playerNumber) {
             gameSunset();
         }
 
