@@ -33,7 +33,7 @@ function gameStart() {
 
     let cheatTool = document.getElementById("cheatTool").checked;
     if (cheatTool === true) {
-        document.getElementById("cheatTool").innerHTML = numberDivisor.length;
+        document.getElementById("cheatToolHint").innerHTML = "ヒント:約数の個数は" + numberDivisor.length;
     }
 }
 
