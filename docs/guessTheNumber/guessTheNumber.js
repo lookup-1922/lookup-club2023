@@ -39,8 +39,8 @@ function gameSunset() {
     time = convertMillisecondsToTime(time);
 
     document.getElementById("information").innerHTML = "<p>おめでとうございます！正解は" + number + "です。</p><p>約数は" + numberDivisor + "です。<p>クリア時間は" + time + "です。</p>";
-    document.getElementById("truePlayerNumber").innerHTML = "約数である:";
-    document.getElementById("falsePlayerNumber").innerHTML = "約数ではない:";
+    document.getElementById("truePlayerDivisor").innerHTML = "約数である:";
+    document.getElementById("falsePlayerDivisor").innerHTML = "約数ではない:";
     document.getElementById("historyPlayerNumber").innerHTML = "これまでの回答:";
     document.getElementById("cheatTool").innerHTML = "ヒント：";
 
