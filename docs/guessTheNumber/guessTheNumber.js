@@ -52,7 +52,7 @@ function gameSunset() {
 }
 
 function sendNumber() {
-    const inputNumber = parseInt(document.getElementById("number").value);
+    const inputNumber = parseInt(document.getElementById("inputNumber").value);
 
     if (gameStatus === true && !isNaN(inputNumber) && currentRequest === "divisor") {
         playerDivisor = inputNumber;
