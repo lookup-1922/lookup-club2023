@@ -44,7 +44,7 @@ function gameSunset() {
     let time = endTime - startTime;
     time = convertMillisecondsToTime(time);
 
-    document.getElementById("information").innerHTML = "<p>正解は" + number + "です。クリア時間は" + time + "です。</p><p>約数は" + numberDivisor + "です。</p>";
+    document.getElementById("information").innerHTML = "<p>正解は" + number + "です。プレイ時間は" + time + "です。</p><p>約数は" + numberDivisor + "です。</p>";
     document.getElementById("truePlayerDivisor").innerHTML = "約数である:";
     document.getElementById("falsePlayerDivisor").innerHTML = "約数ではない:";
     document.getElementById("historyPlayerNumber").innerHTML = "これまでの回答:";
