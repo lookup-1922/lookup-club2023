@@ -33,7 +33,7 @@ function gameStart() {
 
     let cheatTool = document.getElementById("cheatTool").checked;
     if (cheatTool === true) {
-        document.getElementById("cheatToolHint").innerHTML = "ヒント:約数の個数は" + numberDivisor.length;
+        document.getElementById("cheatToolHint").innerHTML = "ヒント:約数の個数は " + numberDivisor.length;
     }
 }
 
@@ -48,7 +48,7 @@ function gameSunset() {
     document.getElementById("truePlayerDivisor").innerHTML = "約数である:";
     document.getElementById("falsePlayerDivisor").innerHTML = "約数ではない:";
     document.getElementById("historyPlayerNumber").innerHTML = "これまでの回答:";
-    document.getElementById("cheatTool").innerHTML = "ヒント：";
+    document.getElementById("cheatToolHint").innerHTML = "ヒント：";
 
     playerNumber = null;
     historyPlayerNumber = [];
