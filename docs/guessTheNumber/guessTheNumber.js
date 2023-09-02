@@ -29,6 +29,8 @@ function gameStart() {
 
     currentRequest = "divisor";
     document.getElementById("currentRequest").innerHTML = "約数の予想を入力：";
+    document.getElementById("information").innerHTML = "あなたの回答を待っています。";
+
 }
 
 function gameSunset() {
