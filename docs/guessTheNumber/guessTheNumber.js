@@ -1,77 +1,110 @@
-function main() { //ゲーム本体を動かす関数
-    // 0から99までのランダムな整数を生成
-    let number = Math.floor(Math.random() * 100);
+//ゲーム中に変化しないグローバル変数を宣言
 
-    // 20以上の素数
+let gameStatus = false;//ゲームが実行中かを判定する用の変数
+let number;//ランダムに生成された数字を代入する変数
+let numberDivisor = [];//ランダムに生成された数字の約数を代入する配列
+let startTime;//開始時刻を代入する変数
+let endTime;//終了時刻を代入する変数
+
+//ゲーム中に変化するグローバル変数を宣言
+
+let playerNumber = null;// playerが予想した数を代入する変数
+let historyPlayerNumber = [];// 変数playerNumberを代入する配列
+let playerDivisor = null;// playerが予想した約数を代入する変数
+let truePlayerDivisor = [];// 変数playerDivisorの内、変数numberDivisorに含まれる数を代入する配列
+let falsePlayerDivisor = [];// 変数playerDivisorの内、変数numberDivisorに含まれない数を代入する配列
+let currentRequest;//ゲームが現在要求する数字の種類
+
+function gameStart() {
+    gameStatus = true;
+    startTime = performance.now();
+
+    number = Math.floor(Math.random() * 100);
     let primeNumber = [23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
-
-    if (primeNumber.includes(number) == true){
+    if (primeNumber.includes(number) == true) {
         number = Math.floor(Math.random() * 100);
     }
-
     console.log(number);
+    numberDivisor = findDivisor(number);
 
-    // 変数numberの約数を変数numberDivisorに代入する
-    let numberDivisor = findDivisor(number);
+    currentRequest = "divisor";
+    document.getElementById("currentRequest").innerHTML = "約数の予想を入力：";
+}
 
-    // playerが予想した変数numberを代入する変数
-    let playerNumber = null;
-
-    // 変数playerNumberを代入する配列
-    let historyPlayerNumber = [];
-
-    // playerが予想した約数を代入する変数
-    let playerDivisor;
-
-    // 変数playerDivisorの内、変数numberDivisorに含まれる数を代入する配列
-    let truePlayerDivisor = [];
-
-    // 変数playerDivisorの内、変数numberDivisorに含まれない数を代入する配列
-    let falsePlayerDivisor = [];
-
-    // 開始時刻を記録
-    const startTime = performance.now();
-
-    //数字を予想する動作の繰り返し
-    while (number != playerNumber) {
-        playerDivisor = parseInt(window.prompt("①0~99で約数の予想を入力してください."), 10); // 数値に変換
-
-        if (numberDivisor.includes(playerDivisor) == true) {
-            truePlayerDivisor.push(playerDivisor);
-            truePlayerDivisor = ascendingOrder(truePlayerDivisor);
-
-            window.alert("②" + playerDivisor + "は約数です。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
-
-        } else if (numberDivisor.includes(playerDivisor) == false) {
-            falsePlayerDivisor.push(playerDivisor);
-            falsePlayerDivisor = ascendingOrder(falsePlayerDivisor);
-
-            window.alert("②" + playerDivisor + "は約数ではないです。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
-        }
-
-        playerNumber = parseInt(window.prompt("③0~99で数字の予想を入力してください."), 10); // 数値に変換
-        historyPlayerNumber.push(playerNumber);
-        historyPlayerNumber = ascendingOrder(historyPlayerNumber);
-
-        if (number != playerNumber) {
-            window.alert("④" + playerNumber + "ではないです。\n約数である:" + truePlayerDivisor + "\n約数ではない:" + falsePlayerDivisor + "\nこれまでの回答:" + historyPlayerNumber);
-        }
-    }
-
-    // 終了時刻を記録
-    const endTime = performance.now();
+function gameSunset() {
+    gameStatus = false;
+    endTime = performance.now();
 
     let time = endTime - startTime;
     time = convertMillisecondsToTime(time);
 
-    window.alert("おめでとうございます！正解は" + number + "です。\n約数は" + numberDivisor + "です。\nクリア時間は" + time + "です。");
+    document.getElementById("information").innerHTML = "<p>おめでとうございます！正解は" + number + "です。</p><p>約数は" + numberDivisor + "です。<p>クリア時間は" + time + "です。</p>";
+    document.getElementById("truePlayerNumber").innerHTML = "";
+    document.getElementById("falsePlayerNumber").innerHTML = "";
+    document.getElementById("historyPlayerNumber").innerHTML = "";
+    document.getElementById("cheatTool").innerHTML = "";
+
+    playerNumber = null;
+    historyPlayerNumber = [];
+    playerDivisor = null;
+    truePlayerDivisor = [];
+    falsePlayerDivisor = [];
+}
+
+function sendNumber() {
+    const inputNumber = parseInt(document.getElementById("number").value);
+
+    if (gameStatus === true && !isNaN(inputNumber) && currentRequest === "divisor") {
+        playerDivisor = inputNumber;
+
+        if (numberDivisor.includes(playerDivisor) === true) {
+            document.getElementById("information").innerHTML = playerDivisor + "は約数です。";
+
+            truePlayerDivisor.push(playerDivisor);
+            truePlayerDivisor = ascendingOrder(truePlayerDivisor);
+            document.getElementById("truePlayerDivisor").innerHTML = truePlayerDivisor;
+
+        } else if (numberDivisor.includes(playerDivisor) === false) {
+            document.getElementById("information").innerHTML = playerDivisor + "は約数ではありません。";
+
+            falsePlayerDivisor.push(playerDivisor);
+            falsePlayerDivisor = ascendingOrder(falsePlayerDivisor);
+            document.getElementById("falsePlayerDivisor").innerHTML = falsePlayerDivisor;
+        }
+
+        currentRequest = "number";
+        document.getElementById("currentRequest").innerHTML = "数字の予想を入力：";
+
+    } else if (gameStatus === true && !isNaN(inputNumber) && currentRequest === "number") {
+        playerNumber = inputNumber;
+        historyPlayerNumber.push(playerNumber);
+        historyPlayerNumber = ascendingOrder(historyPlayerNumber);
+        document.getElementById("historyPlayerNumber").innerHTML = historyPlayerNumber;
+
+        if (number === playerNumber) {
+            document.getElementById("information").innerHTML = playerNumber + "ではないです。";
+        } else if (number !== playerNumber) {
+            gameSunset();
+        }
+
+        currentRequest = "divisor";
+        document.getElementById("currentRequest").innerHTML = "約数の予想を入力：";
+
+    } else if (gameStatus === false) {
+        alert("ゲームが実行されていません。");
+
+    } else if (!isNaN(inputNumber)) {
+        alert("有効な数字を入力してください。");
+
+    }
+
 }
 
 function findDivisor(number) { // 約数を求める関数
     let divisor = [];
 
     if (number <= 0) {
-        return divisor; // 0以下の数には約数が存在しない
+        return divisor; // 0以下の数には約数は存在しない
     }
 
     for (let i = 1; i <= number; i++) {
