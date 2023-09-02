@@ -33,7 +33,7 @@ function gameStart() {
 
     let cheatTool = document.getElementById("cheatTool").checked;
     if (cheatTool === true) {
-        document.getElementById("cheatTool") = numberDivisor.length;
+        document.getElementById("cheatTool").innerHTML = numberDivisor.length;
     }
 }
 
