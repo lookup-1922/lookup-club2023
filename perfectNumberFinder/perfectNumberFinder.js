@@ -1,3 +1,7 @@
+function main(){
+  
+}
+
 function divisor(n) {
   let ret = []; // 結果を格納する配列
 
