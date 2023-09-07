@@ -20,21 +20,19 @@ function main() {
     }
 }
 
-function findDivisor(number) { //約数を求める関数
-    let divisor = [];
-
-    if (number <= 0) {
-        return divisor; // 0以下の数には約数が存在しない
+function findDivisor(n) {
+    const ret = []; // 結果を格納する配列
+  
+    for (let i = 1; i * i <= n; i++) {
+      if (n % i === 0) {
+        ret.push(i); // 約数を追加
+        if (i * i !== n) ret.push(n / i); // 平方根でない場合、対応する約数を追加
+      }
     }
-
-    for (let i = 1; i <= number; i++) {
-        if (number % i === 0) {
-            divisor.push(i); // 約数の場合、divisor配列に追加
-        }
-    }
-
-    return divisor;
-}
+  
+    ret.sort((a, b) => a - b); // 昇順にソート
+    return ret; // 約数の配列を返す
+  }
 
 function mersennePrimesChcker(number, divisor) { //メルセンヌ素数かを判定する関数
     if ((number + 1 & number) === 0) {
