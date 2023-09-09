@@ -63,17 +63,17 @@ function sendNumber() {
     let inputNumber = parseInt(document.getElementById("inputNumber").value);
     document.getElementById("inputNumber").value = "";
 
-    if (gameStatus === true && !isNaN(inputNumber) && currentRequest === "divisor") {
+    if (gameStatus === true && !isNaN(inputNumber) && currentRequest === "divisor") { //約数の予想を求めている場合
         playerDivisor = inputNumber;
 
-        if (numberDivisor.includes(playerDivisor) === true) {
+        if (numberDivisor.includes(playerDivisor) === true) { //約数の予想が正しい場合
             document.getElementById("information").innerHTML = playerDivisor + "は約数です。";
 
             truePlayerDivisor.push(playerDivisor);
             truePlayerDivisor = ascendingOrder(truePlayerDivisor);
             document.getElementById("truePlayerDivisor").innerHTML = `約数である: ${truePlayerDivisor.join(', ')}`;
 
-        } else if (numberDivisor.includes(playerDivisor) === false) {
+        } else if (numberDivisor.includes(playerDivisor) === false) { //約数の予想が間違っている場合
             document.getElementById("information").innerHTML = playerDivisor + "は約数ではありません。";
 
             falsePlayerDivisor.push(playerDivisor);
@@ -84,25 +84,32 @@ function sendNumber() {
         currentRequest = "number";
         document.getElementById("currentRequest").innerHTML = "数字の予想を入力：";
 
-    } else if (gameStatus === true && !isNaN(inputNumber) && currentRequest === "number") {
+    } else if (gameStatus === true && !isNaN(inputNumber) && currentRequest === "number") { //数字の予想を求めている場合
         playerNumber = inputNumber;
         historyPlayerNumber.push(playerNumber);
         historyPlayerNumber = ascendingOrder(historyPlayerNumber);
         document.getElementById("historyPlayerNumber").innerHTML = `これまでの回答: ${historyPlayerNumber.join(', ')}`;
 
-        if (number !== playerNumber) {
+        if (number !== playerNumber) { //数字の予想が間違っている場合
             document.getElementById("information").innerHTML = playerNumber + "ではないです。";
-        } else if (number === playerNumber) {
+
+            if (cheatTool === true && playerNumber < number) { //チートが有効で数字が小さい場合
+                document.getElementById("cheatToolHint").innerHTML = "ヒント:答えの数字は" + playerNumber +"より大きいです。";
+            } else if (cheatTool === true && playerNumber > number) { //チートが有効で数字が大きい場合
+                document.getElementById("cheatToolHint").innerHTML = "ヒント:答えの数字は" + playerNumber +"より小さいです。";
+            }
+
+        } else if (number === playerNumber) { //数字の予想が正しい場合
             gameSunset();
         }
 
         currentRequest = "divisor";
         document.getElementById("currentRequest").innerHTML = "約数の予想を入力：";
 
-    } else if (gameStatus === false) {
+    } else if (gameStatus === false) { // ゲームが実行されていない場合
         alert("ゲームが実行されていません。");
 
-    } else if (isNaN(inputNumber)) {
+    } else if (isNaN(inputNumber)) { // 有効な数字が入力されていない場合
         alert("有効な数字を入力してください。");
 
     }
@@ -111,17 +118,17 @@ function sendNumber() {
 
 function findDivisor(n) {
     const ret = []; // 結果を格納する配列
-  
+
     for (let i = 1; i * i <= n; i++) {
-      if (n % i === 0) {
-        ret.push(i); // 約数を追加
-        if (i * i !== n) ret.push(n / i); // 平方根でない場合、対応する約数を追加
-      }
+        if (n % i === 0) {
+            ret.push(i); // 約数を追加
+            if (i * i !== n) ret.push(n / i); // 平方根でない場合、対応する約数を追加
+        }
     }
-  
+
     ret.sort((a, b) => a - b); // 昇順にソート
     return ret; // 約数の配列を返す
-  }
+}
 
 function ascendingOrder(arr) {
     return arr.sort(function (first, second) {
