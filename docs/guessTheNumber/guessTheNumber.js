@@ -93,6 +93,7 @@ function sendNumber() {
         if (number !== playerNumber) { //数字の予想が間違っている場合
             document.getElementById("information").innerHTML = playerNumber + "ではないです。";
 
+            let cheatTool = document.getElementById("cheatTool").checked;
             if (cheatTool === true && playerNumber < number) { //チートが有効で数字が小さい場合
                 document.getElementById("cheatToolHint").innerHTML = "ヒント:答えの数字は" + playerNumber +"より大きいです。";
             } else if (cheatTool === true && playerNumber > number) { //チートが有効で数字が大きい場合
